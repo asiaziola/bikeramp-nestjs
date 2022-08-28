@@ -3,6 +3,8 @@ import { TripsModule } from './trips/trips.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StatsModule } from './stats/stats.module';
+import { DateService } from './date/services/date/date.service';
+import { DateModule } from './date/date.module';
 import entities from './typeorm';
 
 @Module({
@@ -38,8 +40,9 @@ import entities from './typeorm';
     }),
     TripsModule,
     StatsModule,
+    DateModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [DateService],
 })
 export class AppModule {}

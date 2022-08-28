@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { DateService } from '../../../date/services/date/date.service';
 import { DataSource, Repository } from 'typeorm';
 import { Trip } from '../../../typeorm';
 
@@ -8,6 +9,7 @@ export class StatsService {
   constructor(
     @InjectRepository(Trip) private readonly userRepository: Repository<Trip>,
     @InjectDataSource() private readonly dataSource: DataSource,
+    private readonly dateService: DateService,
   ) {}
 
   async getWeeklyStats() {
@@ -36,5 +38,38 @@ export class StatsService {
       total_distance: `${distanceInKm} km`,
       total_price: `${pricesSum.toFixed(2)}PLN`,
     };
+  }
+
+  async getMonthlyStats() {
+    const monthly = await this.dataSource.query(
+      `SELECT 
+            date, 
+            CAST(avg(price) AS DECIMAL(10, 2)) as avg_price, 
+            SUM(distance_meters) as total_distance, 
+            CAST(avg(distance_meters) AS INT) as avg_distance 
+            FROM trip 
+            WHERE date >= date_trunc('month',current_date) 
+            GROUP BY date, distance_meters;
+        `,
+    );
+
+    if (monthly.length == 0) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'No records for the current month in the database.',
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    const monthlyGrouped = monthly.map((m: any) => ({
+      day: this.dateService.formatDate(m.date),
+      total_distance: `${m.total_distance / 1000}km`,
+      avg_ride: `${m.avg_distance / 1000}km`,
+      avg_price: `${m.avg_price}PLN`,
+    }));
+
+    return monthlyGrouped;
   }
 }
