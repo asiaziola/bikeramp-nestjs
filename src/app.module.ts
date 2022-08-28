@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TripsModule } from './trips/trips.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StatsModule } from './stats/stats.module';
 import { DateService } from './date/services/date/date.service';

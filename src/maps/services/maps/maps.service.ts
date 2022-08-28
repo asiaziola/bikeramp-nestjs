@@ -4,13 +4,12 @@ import {
   TravelMode,
 } from '@googlemaps/google-maps-services-js';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MapsService extends Client {
-  private readonly accessKey = this.config.get('GOOGLE_MAPS_ACCESS_KEY');
+  private readonly accessKey = process.env.GOOGLE_MAPS_ACCESS_KEY;
 
-  constructor(private config: ConfigService) {
+  constructor() {
     super();
   }
 
