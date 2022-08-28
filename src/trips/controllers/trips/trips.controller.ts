@@ -6,7 +6,7 @@ import { CreateTripDto } from '../../../trips/dto/trips.dtos';
 export class TripsController {
   constructor(private tripService: TripsService) {}
 
-  @Post('create')
+  @Post()
   createTrip(@Body() createTripDto: CreateTripDto) {
     return this.tripService.createTrip(createTripDto);
   }
