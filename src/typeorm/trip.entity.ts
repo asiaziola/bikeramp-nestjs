@@ -37,4 +37,11 @@ export class Trip {
     default: () => 'CURRENT_TIMESTAMP',
   })
   date: Date;
+
+  @Column({
+    name: 'distance_meters',
+    nullable: false,
+    default: null,
+  })
+  distanceMeters: number;
 }
