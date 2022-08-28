@@ -7,7 +7,6 @@ import { Trip } from '../../../typeorm';
 @Injectable()
 export class StatsService {
   constructor(
-    @InjectRepository(Trip) private readonly userRepository: Repository<Trip>,
     @InjectDataSource() private readonly dataSource: DataSource,
     private readonly dateService: DateService,
   ) {}
