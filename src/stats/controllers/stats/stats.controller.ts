@@ -15,7 +15,7 @@ export class StatsController {
   }
 
   @Get('monthly')
-  async getMonthly(): Promise<MonthlyStats[] | []> {
+  async getMonthlyStats(): Promise<MonthlyStats[] | []> {
     return this.statsService.getMonthlyStats();
   }
 }
