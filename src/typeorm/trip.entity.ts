@@ -13,14 +13,14 @@ export class Trip {
     nullable: false,
     default: '',
   })
-  startAddress: string;
+  start_address: string;
 
   @Column({
     name: 'destination_address',
     nullable: false,
     default: '',
   })
-  destinationAddress: string;
+  destination_address: string;
 
   @Column({
     type: 'decimal',

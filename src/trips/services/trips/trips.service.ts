@@ -14,8 +14,8 @@ export class TripsService {
 
   async createTrip(createTripDto: CreateTripDto) {
     const distance = await this.mapsService.calculateDistance(
-      createTripDto.startAddress,
-      createTripDto.destinationAddress,
+      createTripDto.start_address,
+      createTripDto.destination_address,
     );
 
     const trip = {

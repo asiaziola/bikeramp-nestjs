@@ -10,11 +10,11 @@ import { Type } from 'class-transformer';
 export class CreateTripDto {
   @IsString()
   @IsNotEmpty()
-  startAddress: string;
+  start_address: string;
 
   @IsString()
   @IsNotEmpty()
-  destinationAddress: string;
+  destination_address: string;
 
   @IsNumber()
   @IsNotEmpty()

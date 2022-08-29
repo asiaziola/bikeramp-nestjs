@@ -32,7 +32,7 @@ Parameters:
 
 - `start_address` - start address, e.g.: "Plac Europejski 2, Warszawa, Polska"
 - `destination_address` - destination address, e.g.: "Plac Europejski 2, Warszawa, Polska"
-- `price` - package price, e.g.: "22.50"
+- `price` - package price, e.g.: 22.50
 - `date` - date of delivery, e.g. "2022-08-27"
 
 #### Stats
@@ -42,4 +42,4 @@ Parameters:
 Returns how many kilometers did the courier ride during current week and how much money he received for the rides.
 
 2. **GET** `api/stats/monthly`
-   Returns a summary of ride distances from current month, grouped by day.
+Returns a summary of ride distances from current month, grouped by day.
