@@ -35,6 +35,10 @@ Parameters:
 - `price` - package price, e.g.: 22.50
 - `date` - date of delivery, e.g. "2022-08-27"
 
+2. **GET** `/api/trips`
+
+Returns all tracked trips ordered by date.
+
 #### Stats
 
 1. **GET** `api/stats/weekly`
@@ -42,4 +46,4 @@ Parameters:
 Returns how many kilometers did the courier ride during current week and how much money he received for the rides.
 
 2. **GET** `api/stats/monthly`
-Returns a summary of ride distances from current month, grouped by day.
+   Returns a summary of ride distances from current month, grouped by day.

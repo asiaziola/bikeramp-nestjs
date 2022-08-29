@@ -41,7 +41,7 @@ export class Trip {
   @Column({
     name: 'distance_meters',
     nullable: false,
-    default: null,
+    default: 0,
   })
   distanceMeters: number;
 }

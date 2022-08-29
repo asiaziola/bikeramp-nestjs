@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DateService } from '../../../date/services/date/date.service';
 import { DataSource } from 'typeorm';
@@ -16,13 +16,7 @@ export class StatsService {
     );
 
     if (weekly.length == 0) {
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          error: 'No records for the current week in the database.',
-        },
-        HttpStatus.NOT_FOUND,
-      );
+      return {};
     }
     const prices = weekly.map((w: any) => parseFloat(w.price));
     const pricesSum = prices.reduce((a: number, b: number) => a + b, 0);
@@ -52,13 +46,7 @@ export class StatsService {
     );
 
     if (monthly.length == 0) {
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          error: 'No records for the current month in the database.',
-        },
-        HttpStatus.NOT_FOUND,
-      );
+      return [];
     }
 
     const monthlyGrouped = monthly.map((m: any) => ({
