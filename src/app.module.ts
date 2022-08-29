@@ -7,6 +7,8 @@ import entities from './typeorm';
 import { configuration } from '../config/configuration';
 import { TripsModule } from './trips/trips.module';
 import { StatsModule } from './stats/stats.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -32,7 +34,7 @@ import { StatsModule } from './stats/stats.module';
     StatsModule,
     DateModule,
   ],
-  controllers: [],
-  providers: [DateService],
+  controllers: [AppController],
+  providers: [AppService, DateService],
 })
 export class AppModule {}

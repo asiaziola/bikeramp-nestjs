@@ -1,8 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { InjectDataSource } from '@nestjs/typeorm';
 import { DateService } from '../../../date/services/date/date.service';
-import { DataSource, Repository } from 'typeorm';
-import { Trip } from '../../../typeorm';
+import { DataSource } from 'typeorm';
 
 @Injectable()
 export class StatsService {
