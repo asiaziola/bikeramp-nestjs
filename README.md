@@ -30,10 +30,10 @@ Logs the trip and automatically calculates the distance between start and destin
 
 Parameters:
 
-- `start_address` - start address in format: "Plac Europejski 2, Warszawa, Polska"
-- `destination_address` - destination address in format: "Plac Europejski 2, Warszawa, Polska"
-- `price` - package price in PLN
-- `date` - date of delivery
+- `start_address` - start address, e.g.: "Plac Europejski 2, Warszawa, Polska"
+- `destination_address` - destination address, e.g.: "Plac Europejski 2, Warszawa, Polska"
+- `price` - package price, e.g.: "22.50"
+- `date` - date of delivery, e.g. "2022-08-27"
 
 #### Stats
 
