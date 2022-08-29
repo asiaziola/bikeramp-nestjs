@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { CreateTripDto } from '../../dto/trips.dtos';
 import { Trip } from '../../../typeorm';
-import { createQueryBuilder, DataSource, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { MapsService } from '../../../maps/services/maps/maps.service';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class TripsService {
     return this.tripRepository.save(newTrip);
   }
 
-  async getTrips() {
+  async getTrips(): Promise<Trip[]> {
     return await this.dataSource
       .getRepository(Trip)
       .createQueryBuilder('trip')

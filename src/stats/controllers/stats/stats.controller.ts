@@ -1,4 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
+import {
+  MonthlyStats,
+  WeeklyStats,
+} from '../../../stats/interfaces/stats.interface';
 import { StatsService } from '../../services/stats/stats.service';
 
 @Controller('api/stats')
@@ -6,12 +10,12 @@ export class StatsController {
   constructor(private readonly statsService: StatsService) {}
 
   @Get('weekly')
-  async getWeeklyStats() {
+  async getWeeklyStats(): Promise<WeeklyStats | {}> {
     return await this.statsService.getWeeklyStats();
   }
 
   @Get('monthly')
-  async getMonthly() {
+  async getMonthly(): Promise<MonthlyStats[] | []> {
     return this.statsService.getMonthlyStats();
   }
 }
