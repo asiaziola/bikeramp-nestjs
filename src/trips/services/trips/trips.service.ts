@@ -21,17 +21,19 @@ export class TripsService {
 
     const trip = {
       ...createTripDto,
-      distanceMeters: distance.value,
+      distance_meters: distance.value,
     };
     const newTrip = this.tripRepository.create(trip);
     return this.tripRepository.save(newTrip);
   }
 
-  async getTrips(): Promise<Trip[]> {
-    return await this.dataSource
+  async getTrips(): Promise<Trip[] | []> {
+    const trips = await this.dataSource
       .getRepository(Trip)
       .createQueryBuilder('trip')
       .orderBy('trip_date', 'DESC')
       .execute();
+
+    return trips.length == 0 ? [] : trips;
   }
 }

@@ -4,19 +4,16 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Trip {
   @PrimaryGeneratedColumn({
     type: 'bigint',
-    name: 'trip_id',
   })
   id: number;
 
   @Column({
-    name: 'start_address',
     nullable: false,
     default: '',
   })
   start_address: string;
 
   @Column({
-    name: 'destination_address',
     nullable: false,
     default: '',
   })
@@ -39,9 +36,8 @@ export class Trip {
   date: Date;
 
   @Column({
-    name: 'distance_meters',
     nullable: false,
     default: 0,
   })
-  distanceMeters: number;
+  distance_meters: number;
 }

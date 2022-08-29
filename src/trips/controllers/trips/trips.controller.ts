@@ -13,7 +13,7 @@ export class TripsController {
   }
 
   @Get()
-  async getTrips(): Promise<Trip[]> {
+  async getTrips(): Promise<Trip[] | []> {
     return await this.tripService.getTrips();
   }
 }
