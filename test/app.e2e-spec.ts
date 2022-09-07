@@ -81,6 +81,28 @@ describe('AppController (e2e)', () => {
       });
   });
 
+  it('/api/trips (POST) - current date', () => {
+    return request(app.getHttpServer())
+      .post('/api/trips')
+      .send({
+        start_address: 'ul. Prosta 20, Warszawa, Polska',
+        destination_address: 'ul. Stryjeńskich 6, Warszawa, Polska',
+        price: 0.5,
+        date: new Date(),
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(201)
+      .expect({
+        start_address: 'ul. Prosta 20, Warszawa, Polska',
+        destination_address: 'ul. Stryjeńskich 6, Warszawa, Polska',
+        price: 0.5,
+        date: '2020-01-01T00:00:00.000Z',
+        distance_meters: 14935,
+        id: 2,
+      });
+  });
+
   it('/api/trips (GET)', () => {
     return request(app.getHttpServer())
       .get('/api/trips')
@@ -93,6 +115,14 @@ describe('AppController (e2e)', () => {
           trip_price: 22.3,
           trip_date: '2020-10-01',
           trip_distance_meters: 15453,
+        },
+        {
+          trip_id: 2,
+          trip_start_address: 'ul. Prosta 20, Warszawa, Polska',
+          trip_destination_address: 'ul. Stryjeńskich 6, Warszawa, Polska',
+          trip_price: 0.5,
+          trip_date: '2020-01-01T00:00:00.000Z',
+          trip_distance_meters: 14935,
         },
       ]);
   });
