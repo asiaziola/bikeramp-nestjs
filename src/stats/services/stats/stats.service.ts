@@ -5,7 +5,7 @@ import { DataSource } from 'typeorm';
 import {
   MonthlyStats,
   WeeklyStats,
-} from '../../../stats/interfaces/stats.interface';
+} from '../../interfaces/stats/stats.interface';
 
 @Injectable()
 export class StatsService {

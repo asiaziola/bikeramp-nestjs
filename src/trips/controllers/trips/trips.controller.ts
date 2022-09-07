@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TripsService } from '../../services/trips/trips.service';
-import { CreateTripDto } from '../../../trips/dto/trips.dtos';
+import { CreateTripDto } from '../../dto/trips/trips.dtos';
 import { Trip } from '../../../typeorm';
 
 @Controller('api/trips')

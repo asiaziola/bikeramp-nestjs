@@ -47,3 +47,11 @@ Returns how many kilometers did the courier ride during current week and how muc
 
 2. **GET** `api/stats/monthly`
    Returns a summary of ride distances from current month, grouped by day.
+
+### Run E2E tests
+
+In order for E2E tests to work properly `env/test.env` file must be created in the [config](https://github.com/asiaziola/bikeramp-nestjs/tree/main/config) directory. E2E tests use in memory sqlite database, but Google Maps access key must be provided:
+
+```sh
+GOOGLE_MAPS_ACCESS_KEY=YOUR_ACCESS_KEY
+```

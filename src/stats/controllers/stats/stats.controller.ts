@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import {
   MonthlyStats,
   WeeklyStats,
-} from '../../../stats/interfaces/stats.interface';
+} from '../../interfaces/stats/stats.interface';
 import { StatsService } from '../../services/stats/stats.service';
 
 @Controller('api/stats')

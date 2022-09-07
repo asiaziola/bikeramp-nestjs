@@ -5,10 +5,10 @@ import {
   getDataSourceToken,
   getRepositoryToken,
 } from '@nestjs/typeorm';
-import { Trip } from '../typeorm';
-import { TripsService } from './services/trips/trips.service';
-import { TripsController } from './controllers/trips/trips.controller';
-import { MapsService } from '../maps/services/maps/maps.service';
+import { Trip } from '../../../typeorm';
+import { TripsService } from '../../services/trips/trips.service';
+import { TripsController } from '../../controllers/trips/trips.controller';
+import { MapsService } from '../../../maps/services/maps/maps.service';
 
 describe('Trips', () => {
   let controller: TripsController;
