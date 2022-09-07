@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Trip {
   @PrimaryGeneratedColumn({
-    type: 'bigint',
+    type: 'int',
   })
   id: number;
 

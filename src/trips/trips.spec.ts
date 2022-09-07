@@ -49,16 +49,21 @@ describe('Trips', () => {
   });
 
   it('should return array of trips', async () => {
-    const expectedResult = [
-      {
-        id: 28,
-        start_address: 'ul. Grzybowska 60, Warszawa, Polska',
-        destination_address: 'ul. Józefa Bema 83, Warszawa, Polska',
-        price: 22.3,
-        date: new Date(2016),
-        distance_meters: 0,
-      },
-    ];
+    const expectedResult = [RESULT];
+    jest
+      .spyOn(service, 'getTrips')
+      .mockImplementation(
+        () => new Promise((resolve) => resolve(expectedResult)),
+      );
+
+    const actualResult = await controller.getTrips();
+    expect(service.getTrips).toHaveBeenCalled();
+    expect(actualResult).toBe(expectedResult);
+    expect(actualResult).toHaveLength(1);
+  });
+
+  it('should return empty array if no trips exist', async () => {
+    const expectedResult: [] = [];
     jest
       .spyOn(service, 'getTrips')
       .mockImplementation(
@@ -67,9 +72,10 @@ describe('Trips', () => {
 
     const actualResult = await controller.getTrips();
     expect(actualResult).toBe(expectedResult);
+    expect(actualResult).toHaveLength(0);
   });
 
-  it('should call service post method', async () => {
+  it('should properly create trip', async () => {
     const postRequest = {
       start_address: 'ul. Grzybowska 60, Warszawa, Polska',
       destination_address: 'ul. Stryjeńskich 6, Warszawa, Polska',
@@ -77,20 +83,21 @@ describe('Trips', () => {
       date: new Date(2016),
     };
 
-    const expectedResult = {
-      id: 28,
-      start_address: 'ul. Grzybowska 60, Warszawa, Polska',
-      destination_address: 'ul. Józefa Bema 83, Warszawa, Polska',
-      price: 22.3,
-      date: new Date(2016),
-      distance_meters: 0,
-    };
     jest
       .spyOn(service, 'createTrip')
-      .mockImplementation(
-        () => new Promise((resolve) => resolve(expectedResult)),
-      );
-    controller.createTrip(postRequest);
+      .mockImplementation(() => new Promise((resolve) => resolve(RESULT)));
+
+    const actualResult = await controller.createTrip(postRequest);
     expect(service.createTrip).toHaveBeenCalled();
+    expect(actualResult).toBe(RESULT);
   });
 });
+
+const RESULT: Trip = {
+  id: 28,
+  start_address: 'ul. Grzybowska 60, Warszawa, Polska',
+  destination_address: 'ul. Józefa Bema 83, Warszawa, Polska',
+  price: 22.3,
+  date: new Date(2016),
+  distance_meters: 0,
+};
